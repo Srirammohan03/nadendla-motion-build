@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
+import { Parallax } from "react-scroll-parallax";
 import { ArrowRight, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-construction.jpg";
 
@@ -26,13 +28,15 @@ const itemVariants = {
 export const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Parallax Background Image */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Construction site"
-          className="w-full h-full object-cover"
-        />
+        <Parallax speed={-20} className="absolute inset-0 h-[120%] -top-[10%]">
+          <img
+            src={heroImage}
+            alt="Construction site"
+            className="w-full h-full object-cover"
+          />
+        </Parallax>
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/80 to-accent/30" />
         {/* Animated gradient overlay */}
@@ -89,14 +93,18 @@ export const HeroSection = () => {
 
           {/* CTA Buttons */}
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-            <Button variant="hero" size="xl">
-              Explore Our Work
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button variant="heroOutline" size="xl">
-              <Play className="mr-2 h-5 w-5" />
-              Watch Our Story
-            </Button>
+            <Link to="/projects">
+              <Button variant="hero" size="xl">
+                Explore Our Work
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+            <Link to="/about">
+              <Button variant="heroOutline" size="xl">
+                <Play className="mr-2 h-5 w-5" />
+                Watch Our Story
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Stats Preview */}

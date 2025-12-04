@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Parallax } from "react-scroll-parallax";
 import { Search, Settings, Rocket } from "lucide-react";
+import teamImage from "@/assets/team-construction.jpg";
 
 const steps = [
   {
@@ -29,8 +31,32 @@ export const ProcessSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="process" className="section-padding bg-secondary" ref={ref}>
-      <div className="container-custom mx-auto">
+    <section id="process" className="relative section-padding overflow-hidden" ref={ref}>
+      {/* Parallax Background */}
+      <div className="absolute inset-0">
+        <Parallax speed={-15} className="absolute inset-0 h-[130%] -top-[15%]">
+          <img
+            src={teamImage}
+            alt="Team working"
+            className="w-full h-full object-cover"
+          />
+        </Parallax>
+        <div className="absolute inset-0 bg-primary/90" />
+        {/* Moving gradient overlay */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-accent/20 via-transparent to-accent/20"
+          animate={{
+            x: ["-100%", "100%"],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      </div>
+
+      <div className="container-custom mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -41,10 +67,10 @@ export const ProcessSection = () => {
           <p className="text-accent font-semibold mb-2 tracking-wider uppercase text-sm">
             How We Work
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-extrabold text-primary-foreground mb-4">
             Our Process
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-primary-foreground/80 text-lg">
             A systematic approach that ensures every project is delivered with 
             excellence, on time, and within budget.
           </p>
@@ -53,7 +79,7 @@ export const ProcessSection = () => {
         {/* Process Steps */}
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12 relative">
           {/* Connection Lines */}
-          <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 border-t-2 border-dashed border-muted-foreground/30" />
+          <div className="hidden md:block absolute top-24 left-1/4 right-1/4 h-0.5 border-t-2 border-dashed border-primary-foreground/30" />
           
           {steps.map((step, index) => (
             <motion.div
@@ -65,8 +91,8 @@ export const ProcessSection = () => {
             >
               {/* Icon Container */}
               <div className="relative inline-block mb-8">
-                <div className="w-32 h-32 rounded-full border-2 border-accent/30 flex items-center justify-center mx-auto bg-background">
-                  <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center">
+                <div className="w-32 h-32 rounded-full border-2 border-accent/30 flex items-center justify-center mx-auto bg-primary/50 backdrop-blur-sm">
+                  <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center">
                     <step.icon className="h-10 w-10 text-accent" />
                   </div>
                 </div>
@@ -77,10 +103,10 @@ export const ProcessSection = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-heading font-bold text-primary mb-3">
+              <h3 className="text-xl font-heading font-bold text-primary-foreground mb-3">
                 {step.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-primary-foreground/70 leading-relaxed">
                 {step.description}
               </p>
             </motion.div>

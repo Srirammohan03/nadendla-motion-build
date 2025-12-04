@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Parallax } from "react-scroll-parallax";
+import { Link } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-construction.jpg";
@@ -11,14 +13,17 @@ export const CTASection = () => {
 
   return (
     <section className="relative py-24 overflow-hidden" ref={ref}>
-      {/* Background */}
+      {/* Parallax Background */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Construction background"
-          className="w-full h-full object-cover"
-        />
+        <Parallax speed={-15} className="absolute inset-0 h-[140%] -top-[20%]">
+          <img src={heroImage} alt="Construction background" className="w-full h-full object-cover" />
+        </Parallax>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/85 to-accent/40" />
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-l from-accent/30 via-transparent to-accent/30"
+          animate={{ opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        />
       </div>
 
       {/* Content */}
@@ -40,10 +45,12 @@ export const CTASection = () => {
             infrastructure project, our team is ready to bring your vision to life.
           </p>
           <div className="flex flex-wrap gap-4">
-            <Button variant="accent" size="xl">
-              Start Your Project
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <Link to="/contact">
+              <Button variant="accent" size="xl">
+                Start Your Project
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
             <Button variant="heroOutline" size="xl">
               <Phone className="mr-2 h-5 w-5" />
               +91 98765 43210

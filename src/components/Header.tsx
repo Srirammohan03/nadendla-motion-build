@@ -1,21 +1,25 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.jpeg";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Projects", href: "#projects" },
-  { name: "Process", href: "#process" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Projects", href: "/projects" },
+  { name: "Quality & Safety", href: "/quality-safety" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Clients", href: "/clients" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +28,8 @@ export const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const isActive = (href: string) => location.pathname === href;
 
   return (
     <motion.header
@@ -39,49 +45,54 @@ export const Header = () => {
       <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.a
-            href="#home"
-            className="flex items-center gap-3"
-            whileHover={{ scale: 1.02 }}
-          >
-            <img src={logo} alt="Nadendla Constructions" className="h-12 w-auto" />
-          </motion.a>
+          <motion.div whileHover={{ scale: 1.02 }}>
+            <Link to="/" className="flex items-center gap-3">
+              <img src={logo} alt="Nadendla Constructions" className="h-12 w-auto" />
+            </Link>
+          </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1">
             {navLinks.map((link, index) => (
-              <motion.a
+              <motion.div
                 key={link.name}
-                href={link.href}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className={`px-4 py-2 text-sm font-medium transition-colors duration-300 relative group ${
-                  isScrolled
-                    ? "text-primary-foreground hover:text-accent"
-                    : "text-primary-foreground hover:text-accent"
-                }`}
               >
-                {link.name}
-                <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              </motion.a>
+                <Link
+                  to={link.href}
+                  className={`px-3 py-2 text-sm font-medium transition-colors duration-300 relative group ${
+                    isActive(link.href)
+                      ? "text-accent"
+                      : "text-primary-foreground hover:text-accent"
+                  }`}
+                >
+                  {link.name}
+                  <span className={`absolute bottom-0 left-3 right-3 h-0.5 bg-accent transform transition-transform duration-300 origin-left ${
+                    isActive(link.href) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  }`} />
+                </Link>
+              </motion.div>
             ))}
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="hidden xl:flex items-center gap-4">
             <a href="tel:+919876543210" className="flex items-center gap-2 text-primary-foreground">
               <Phone className="h-4 w-4 text-accent" />
               <span className="text-sm font-medium">+91 98765 43210</span>
             </a>
-            <Button variant="accent" size="sm">
-              Get a Quote
-            </Button>
+            <Link to="/contact">
+              <Button variant="accent" size="sm">
+                Get a Quote
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-primary-foreground"
+            className="xl:hidden p-2 text-primary-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -96,22 +107,26 @@ export const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-primary border-t border-primary-foreground/10"
+            className="xl:hidden bg-primary border-t border-primary-foreground/10"
           >
-            <nav className="container-custom mx-auto px-4 py-6 flex flex-col gap-4">
+            <nav className="container-custom mx-auto px-4 py-6 flex flex-col gap-2">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.name}
-                  href={link.href}
-                  className="text-primary-foreground hover:text-accent transition-colors py-2 text-lg font-medium"
+                  to={link.href}
+                  className={`py-2 text-lg font-medium transition-colors ${
+                    isActive(link.href) ? "text-accent" : "text-primary-foreground hover:text-accent"
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
-                </a>
+                </Link>
               ))}
-              <Button variant="accent" className="mt-4 w-full">
-                Get a Quote
-              </Button>
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                <Button variant="accent" className="mt-4 w-full">
+                  Get a Quote
+                </Button>
+              </Link>
             </nav>
           </motion.div>
         )}

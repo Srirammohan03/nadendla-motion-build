@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Parallax } from "react-scroll-parallax";
+import { Link } from "react-router-dom";
 import { CheckCircle, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import teamImage from "@/assets/team-construction.jpg";
+import heroImage from "@/assets/hero-construction.jpg";
 
 const features = [
   "Deliver ultimate industrial services",
@@ -17,8 +20,16 @@ export const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="section-padding bg-secondary" ref={ref}>
-      <div className="container-custom mx-auto">
+    <section id="about" className="relative section-padding overflow-hidden" ref={ref}>
+      {/* Parallax Background */}
+      <div className="absolute inset-0">
+        <Parallax speed={-8} className="absolute inset-0 h-[120%] -top-[10%]">
+          <img src={heroImage} alt="Construction background" className="w-full h-full object-cover opacity-5" />
+        </Parallax>
+        <div className="absolute inset-0 bg-secondary" />
+      </div>
+
+      <div className="container-custom mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text Content */}
           <motion.div
@@ -57,9 +68,11 @@ export const AboutSection = () => {
               ))}
             </ul>
 
-            <Button variant="accent" size="lg">
-              More About Us
-            </Button>
+            <Link to="/about">
+              <Button variant="accent" size="lg">
+                More About Us
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Image Section */}

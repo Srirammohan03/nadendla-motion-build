@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { Parallax } from "react-scroll-parallax";
+import { Link } from "react-router-dom";
 import { 
   Building, 
   Factory, 
@@ -10,6 +12,7 @@ import {
   Truck,
   ArrowRight 
 } from "lucide-react";
+import heroImage from "@/assets/hero-construction.jpg";
 
 const services = [
   {
@@ -68,8 +71,20 @@ export const ServicesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="section-padding bg-background" ref={ref}>
-      <div className="container-custom mx-auto">
+    <section id="services" className="relative section-padding overflow-hidden" ref={ref}>
+      {/* Parallax Background */}
+      <div className="absolute inset-0">
+        <Parallax speed={-10} className="absolute inset-0 h-[120%] -top-[10%]">
+          <img
+            src={heroImage}
+            alt="Construction background"
+            className="w-full h-full object-cover opacity-10"
+          />
+        </Parallax>
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+      </div>
+
+      <div className="container-custom mx-auto relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -101,7 +116,7 @@ export const ServicesSection = () => {
               key={index}
               variants={cardVariants}
               whileHover={{ y: -8 }}
-              className="group bg-card border border-border rounded-xl p-8 hover:shadow-elevated hover:border-accent/30 transition-all duration-300"
+              className="group bg-card/80 backdrop-blur-sm border border-border rounded-xl p-8 hover:shadow-elevated hover:border-accent/30 transition-all duration-300"
             >
               <div className="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
                 <service.icon className="h-8 w-8 text-accent group-hover:text-primary-foreground transition-colors" />
@@ -112,13 +127,13 @@ export const ServicesSection = () => {
               <p className="text-muted-foreground mb-4 leading-relaxed">
                 {service.description}
               </p>
-              <a
-                href="#"
+              <Link
+                to="/services"
                 className="inline-flex items-center text-accent font-semibold text-sm group-hover:gap-3 transition-all"
               >
                 Learn More
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </Link>
             </motion.div>
           ))}
         </motion.div>

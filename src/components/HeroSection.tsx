@@ -3,7 +3,7 @@ import { Parallax } from "react-scroll-parallax";
 import { ArrowRight, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero-construction.jpg";
+import heroImage from "/assets/images/hero.jpg";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -102,8 +102,9 @@ export const HeroSection = () => {
             </Link>
             <Link to="/about">
               <Button variant="heroOutline" size="xl">
-                <Play className="mr-2 h-5 w-5" />
-                Watch Our Story
+                
+                 Our Story
+                 <ArrowRight className="mr-2 h-5 w-5" />
               </Button>
             </Link>
           </motion.div>

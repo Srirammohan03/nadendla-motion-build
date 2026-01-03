@@ -53,7 +53,7 @@ export const CTASection = () => {
             </Link>
             <Button variant="heroOutline" size="xl">
               <Phone className="mr-2 h-5 w-5" />
-              +91 98765 43210
+              +91 9494288997
             </Button>
           </div>
         </motion.div>

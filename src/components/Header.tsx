@@ -88,9 +88,9 @@ export const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden xl:flex items-center gap-4">
-            <a href="tel:+919876543210" className="flex items-center gap-2 text-primary-foreground">
+            <a href="tel:+919494288997" className="flex items-center gap-2 text-primary-foreground">
               <Phone className="h-4 w-4 text-accent" />
-              <span className="text-sm font-medium">+91 98765 43210</span>
+              <span className="text-sm font-medium">+91 9494288997</span>
             </a>
 
             <Link to="/contact" onClick={scrollToTop}>

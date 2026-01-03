@@ -8,9 +8,9 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 const contactInfo = [
-  { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
-  { icon: Mail, label: "Email", value: "info@nadendla.com", href: "mailto:info@nadendla.com" },
-  { icon: MapPin, label: "Address", value: "123 Industrial Area, Hyderabad, Telangana 500001" },
+  { icon: Phone, label: "Phone", value: "+91 9494288997 , 9440011704", href: "tel:+919494288997" },
+  { icon: Mail, label: "Email", value: "n.vamsikiran4@gmail.com", href: "mailto:n.vamsikiran4@gmail.com" },
+  { icon: MapPin, label: "Address", value: "3rd floor, Above Varun Bajaj showroom, ViP Hills , 100 feet Road , Madhapur, Hyderabad 500081" },
   { icon: Clock, label: "Working Hours", value: "Mon - Sat: 9:00 AM - 6:00 PM" },
 ];
 
@@ -83,7 +83,7 @@ const ContactPage = () => {
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         className="w-full px-4 py-3 rounded-lg border border-border bg-card focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all"
-                        placeholder="+91 98765 43210"
+                        placeholder="+91 9494288997"
                       />
                     </div>
                     <div>
@@ -154,13 +154,16 @@ const ContactPage = () => {
                 </div>
 
                 {/* Map Placeholder */}
-                <div className="aspect-video bg-secondary rounded-xl border border-border flex items-center justify-center">
-                  <div className="text-center">
-                    <MapPin className="h-12 w-12 text-accent mx-auto mb-2" />
-                    <p className="text-muted-foreground">Interactive Map</p>
-                    <p className="text-sm text-muted-foreground">Hyderabad, Telangana</p>
-                  </div>
-                </div>
+                <div className="aspect-video bg-secondary rounded-xl border border-border overflow-hidden">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3806.1603433487307!2d78.39393199999999!3d17.452037999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDI3JzA3LjMiTiA3OMKwMjMnMzguMiJF!5e0!3m2!1sen!2sin!4v1767355554275!5m2!1sen!2sin"
+    className="w-full h-full border-0"
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  />
+</div>
+
               </motion.div>
             </div>
           </div>

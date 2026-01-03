@@ -25,7 +25,28 @@ const services = [
   "Infrastructure",
   "Renovation",
 ];
-
+const socialLinks = [
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/profile.php?id=61585645859844",
+    label: "Facebook",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/nadendla_constructions/",
+    label: "Instagram",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/nadendla-constructions-nadendla-constructions-125905362/",
+    label: "LinkedIn",
+  },
+  {
+    icon: MapPin,
+    href: "https://maps.app.goo.gl/vuUSKdDYWudrANGS6",
+    label: "Google Maps",
+  },
+];
 export const Footer = () => {
   // scrollToTop function for smooth top scroll
   const scrollToTop = () => {
@@ -53,17 +74,20 @@ export const Footer = () => {
             </p>
 
             <div className="flex gap-3">
-              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
-                <a
-                  key={index}
-                  onClick={scrollToTop}
-                  href="/"
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-primary-foreground transition-all cursor-pointer"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
-            </div>
+  {socialLinks.map(({ icon: Icon, href, label }, index) => (
+    <a
+      key={index}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={scrollToTop}
+      aria-label={label}
+      className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-accent hover:text-primary-foreground transition-all cursor-pointer"
+    >
+      <Icon className="h-4 w-4" />
+    </a>
+  ))}
+</div>
           </div>
 
           {/* Quick Links */}
@@ -111,9 +135,9 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-accent flex-shrink-0 mt-1" />
                 <span className="text-primary-foreground/70">
-                  123 Industrial Estate,
+                  3rd floor, Above Varun Bajaj showroom, ViP Hills , 100 feet Road
                   <br />
-                  Hyderabad, Telangana 500001
+                   Madhapur, Hyderabad 500081
                 </span>
               </li>
 
@@ -121,10 +145,10 @@ export const Footer = () => {
                 <Phone className="h-5 w-5 text-accent" />
                 <a
                   onClick={scrollToTop}
-                  href="tel:+919876543210"
+                  href="tel:+919494288997"
                   className="text-primary-foreground/70 hover:text-accent transition-colors cursor-pointer"
                 >
-                  +91 98765 43210
+                 9494288997 , 9440011704
                 </a>
               </li>
 
@@ -132,10 +156,10 @@ export const Footer = () => {
                 <Mail className="h-5 w-5 text-accent" />
                 <a
                   onClick={scrollToTop}
-                  href="mailto:info@nadendla.com"
+                  href="mailto:n.vamsikiran4@gmail.com"
                   className="text-primary-foreground/70 hover:text-accent transition-colors cursor-pointer"
                 >
-                  info@nadendla.com
+                  n.vamsikiran4@gmail.com
                 </a>
               </li>
             </ul>
@@ -148,11 +172,12 @@ export const Footer = () => {
         <div className="container-custom mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-primary-foreground/60 text-sm">
-              © 2024 Nadendla Constructions Pvt. Ltd. All rights reserved.  Powered by <a href="https://www.outrightcreators.com/">Outright Creators</a>
+              © 2026 Nadendla Constructions Pvt. Ltd. All rights reserved.  
             </p>
 
-            <div className="flex gap-6 text-sm">
-              <a
+            <div className="flex gap-1 text-sm">
+              Powered by <a href="https://www.outrightcreators.com/">Outright Creators</a>
+              {/* <a
                 href="/privacy-policy"
                 onClick={scrollToTop}
                 className="text-primary-foreground/60 hover:text-accent transition-colors cursor-pointer"
@@ -166,7 +191,7 @@ export const Footer = () => {
                 className="text-primary-foreground/60 hover:text-accent transition-colors cursor-pointer"
               >
                 Terms of Service
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

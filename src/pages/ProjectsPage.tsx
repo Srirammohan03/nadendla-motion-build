@@ -35,8 +35,8 @@ const ProjectsPage = () => {
     <div className="min-h-screen">
       <Header />
       <main>
-        <PageHero 
-          title="Our Projects" 
+        <PageHero
+          title="Our Projects"
           subtitle="Showcasing our expertise across industrial, commercial, and infrastructure sectors"
         />
 
@@ -45,22 +45,71 @@ const ProjectsPage = () => {
             {/* Filters */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
               {filters.map((filter) => (
+                // <button
+                //   key={filter}
+                //   onClick={() => setActiveFilter(filter)}
+                //   className={`px-5 py-2 rounded-full font-medium transition-all ${
+                //     activeFilter === filter
+                //       ? "bg-accent text-primary-foreground"
+                //       : "bg-secondary text-muted-foreground hover:bg-accent/10 hover:text-accent"
+                //   }`}
+                // >
+                //   {filter}
+                // </button>
                 <button
                   key={filter}
-                  onClick={() => setActiveFilter(filter)}
-                  className={`px-5 py-2 rounded-full font-medium transition-all ${
-                    activeFilter === filter
+                  disabled
+                  className={`px-5 py-2 rounded-full font-medium cursor-not-allowed opacity-60
+    ${activeFilter === filter
                       ? "bg-accent text-primary-foreground"
-                      : "bg-secondary text-muted-foreground hover:bg-accent/10 hover:text-accent"
-                  }`}
+                      : "bg-secondary text-muted-foreground"
+                    }`}
                 >
                   {filter}
                 </button>
+
               ))}
             </div>
 
             {/* Projects Grid */}
-            <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="max-w-5xl mx-auto mt-16"
+            >
+              <div className="rounded-2xl border border-dashed border-accent/40 bg-card px-10 py-16 text-center shadow-lg shadow-black/50 hover:shadow-xl transition-shadow duration-300">
+
+                {/* Icon */}
+                <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 shadow-md shadow-black/50">
+                  <ArrowRight className="h-7 w-7 text-accent" />
+                </div>
+
+                {/* Title */}
+                <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
+                  Projects Under Execution
+                </h2>
+
+                {/* Description */}
+                <p className="mx-auto max-w-3xl text-muted-foreground text-lg leading-relaxed">
+                  We are currently executing multiple large-scale industrial, commercial,
+                  and infrastructure projects across India. Detailed project information
+                  will be published once key execution milestones are achieved.
+                </p>
+
+                {/* Divider */}
+                <div className="my-8 h-px bg-border max-w-xs mx-auto" />
+
+                {/* Footer note */}
+                <p className="text-sm text-muted-foreground">
+                  For current project credentials, case studies, or references, please
+                  contact our team directly.
+                </p>
+              </div>
+            </motion.div>
+
+
+            {/* <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <AnimatePresence mode="popLayout">
                 {filteredProjects.map((project) => (
                   <motion.div
@@ -101,7 +150,7 @@ const ProjectsPage = () => {
                   </motion.div>
                 ))}
               </AnimatePresence>
-            </motion.div>
+            </motion.div> */}
           </div>
         </section>
 

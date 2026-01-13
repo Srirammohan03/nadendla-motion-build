@@ -13,7 +13,7 @@ const navLinks = [
   { name: "Quality & Safety", href: "/quality-safety" },
   { name: "Gallery", href: "/gallery" },
   { name: "Clients", href: "/clients" },
-  { name: "Contact", href: "/contact" },
+  // { name: "Contact", href: "/contact" },
 ];
 
 export const Header = () => {

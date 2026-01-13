@@ -9,42 +9,56 @@ import { Parallax } from "react-scroll-parallax";
 import { Factory, Building, HardHat, Wrench, Ruler, Truck, CheckCircle } from "lucide-react";
 import heroImage from "@/assets/hero-construction.jpg";
 
+// Assets (Assuming these paths are correct in your project)
+import factoryImage from "/assets/images/factory.jpg";
+import buildingImage from "/assets/images/building.jpg";
+import infrastructureImage from "/assets/images/infrastructure.jpg";
+import renovationImage from "/assets/images/renovation.jpg";
+import projectImage from "/assets/images/project.jpg";
+import heavyEquipmentImage from "/assets/images/heavy-equipment.jpg";
+
 const services = [
   {
     icon: Factory,
     title: "Industrial Plants",
     description: "Complete industrial facility construction from design to commissioning with cutting-edge engineering.",
     features: ["Chemical Plants", "Manufacturing Units", "Power Plants", "Warehousing"],
+    bgImage: factoryImage, 
   },
   {
     icon: Building,
     title: "Commercial Buildings",
     description: "Modern commercial spaces including offices, shopping complexes, and mixed-use developments.",
     features: ["Office Complexes", "Shopping Malls", "Hotels", "Mixed-Use Developments"],
+    bgImage: buildingImage,
   },
   {
     icon: HardHat,
     title: "Infrastructure",
     description: "Large-scale infrastructure projects including roads, bridges, and utilities development.",
     features: ["Roads & Highways", "Bridges", "Water Treatment", "Utilities"],
+    bgImage: infrastructureImage,
   },
   {
     icon: Wrench,
     title: "Renovation & Retrofit",
     description: "Modernization and renovation of existing structures with minimal operational disruption.",
     features: ["Structural Upgrades", "MEP Retrofitting", "Facade Renovation", "Seismic Strengthening"],
+    bgImage: renovationImage,
   },
   {
     icon: Ruler,
     title: "Project Management",
     description: "End-to-end project management ensuring timely delivery and budget optimization.",
     features: ["Planning & Scheduling", "Cost Management", "Quality Control", "Risk Management"],
+    bgImage: projectImage,
   },
   // {
   //   icon: Truck,
   //   title: "Heavy Equipment",
   //   description: "State-of-the-art heavy machinery and equipment for efficient project execution.",
   //   features: ["Cranes & Lifts", "Earthmoving", "Concrete Equipment", "Transport Fleet"],
+  //   bgImage: heavyEquipmentImage,
   // },
 ];
 
@@ -67,30 +81,50 @@ const ServicesPage = () => {
             <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
               {services.map((service, index) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group bg-card border border-border rounded-xl p-8 hover:shadow-elevated hover:border-accent/30 transition-all"
-                >
-                  <div className="flex items-start gap-6">
-                    <div className="w-16 h-16 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-accent group-hover:scale-110 transition-all">
-                      <service.icon className="h-8 w-8 text-accent group-hover:text-primary-foreground transition-colors" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-heading font-bold text-primary mb-3">{service.title}</h3>
-                      <p className="text-muted-foreground mb-4 leading-relaxed">{service.description}</p>
-                      <ul className="grid grid-cols-2 gap-2">
-                        {service.features.map((feature, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm">
-                            <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
-                            <span className="text-foreground">{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
+  key={index}
+  initial={{ opacity: 0, y: 30 }}
+  animate={isInView ? { opacity: 1, y: 0 } : {}}
+  transition={{ duration: 0.5, delay: index * 0.1 }}
+  className="group relative rounded-xl overflow-hidden border border-border hover:border-accent/40 transition-all"
+  style={{
+    backgroundImage: `url(${service.bgImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+>
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-primary/85 group-hover:bg-primary/90 transition-colors" />
+
+  {/* Content */}
+  <div className="relative z-10 p-8">
+    <div className="flex items-start gap-6">
+      <div className="w-16 h-16 bg-accent/15 rounded-lg flex items-center justify-center flex-shrink-0
+                      group-hover:bg-accent group-hover:scale-110 transition-all shadow-md shadow-accent/20">
+        <service.icon className="h-8 w-8 text-accent group-hover:text-primary-foreground transition-colors" />
+      </div>
+
+      <div className="flex-1">
+        <h3 className="text-2xl font-heading font-bold text-primary-foreground mb-3">
+          {service.title}
+        </h3>
+
+        <p className="text-primary-foreground/80 mb-4 leading-relaxed">
+          {service.description}
+        </p>
+
+        <ul className="grid grid-cols-2 gap-2">
+          {service.features.map((feature, i) => (
+            <li key={i} className="flex items-center gap-2 text-sm">
+              <CheckCircle className="h-4 w-4 text-accent flex-shrink-0" />
+              <span className="text-primary-foreground/90">{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</motion.div>
+
               ))}
             </div>
           </div>

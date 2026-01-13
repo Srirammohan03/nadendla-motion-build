@@ -9,40 +9,74 @@ import { useState } from "react";
 import heroImage from "@/assets/hero-construction.jpg";
 
 const clients = [
-  { name: "Tata Industries", sector: "Industrial" },
-  { name: "Reliance Infrastructure", sector: "Infrastructure" },
-  { name: "L&T Construction", sector: "Commercial" },
-  { name: "Godrej Properties", sector: "Real Estate" },
-  { name: "Adani Group", sector: "Industrial" },
-  { name: "Mahindra Lifespaces", sector: "Commercial" },
-  { name: "BHEL", sector: "Industrial" },
-  { name: "NTPC", sector: "Power" },
-  { name: "ONGC", sector: "Oil & Gas" },
-  { name: "Indian Railways", sector: "Infrastructure" },
-  { name: "Metro Rail Corp", sector: "Infrastructure" },
-  { name: "State Highways", sector: "Infrastructure" },
+  { name: "Reliance Industrial", sector: "Industrial" },
+  { name: "L&T Infrastructure", sector: "Infrastructure" },
+  { name: "Kribhco Green Energy Pvt Ltd", sector: "Green Energy" },
+  { name: "Pushpit Steels Pvt Ltd", sector: "Steel Manufacturing" },
+  { name: "MS Agarwal Foundries", sector: "Foundry & Metals" },
+  { name: "Maruthi Ispat Energy Pvt Ltd", sector: "Energy & Steel" },
+  { name: "Sitaram Spinners Pvt Ltd", sector: "Textiles" },
+  { name: "Rama Spinners Pvt Ltd", sector: "Textiles" },
+  { name: "Excel Regreen Energy LLP", sector: "Renewable Energy" },
+  { name: "Switch Gear Manufacturers Pvt Ltd", sector: "Electrical Equipment" },
+  { name: "Bhudan Engineering Pvt Ltd", sector: "Engineering" },
+  { name: "Sanathan Allied Industries", sector: "Manufacturing" },
+  { name: "Run Flat Systems", sector: "Automotive Systems" },
 ];
+
 
 const testimonials = [
   {
-    name: "Rajesh Kumar",
-    role: "CEO, Kumar Industries",
-    content: "Nadendla Constructions delivered our industrial facility ahead of schedule. Their attention to detail and commitment to quality is unmatched. Highly recommended for any large-scale construction project.",
+    name: "Rakesh Mehta",
+    role: "Director, Reliance Industrial Projects",
+    content:
+      "Nadendla Constructions demonstrated exceptional execution capabilities. Their structured project management and strict adherence to safety and quality standards ensured timely delivery of our industrial facility.",
     rating: 5,
   },
   {
-    name: "Priya Sharma",
-    role: "Managing Director, Sharma Enterprises",
-    content: "Working with Nadendla was a seamless experience. Their team's expertise in commercial construction helped us create a workspace that truly reflects our brand. Outstanding work!",
+    name: "Suresh Iyer",
+    role: "Senior Manager, L&T Infrastructure",
+    content:
+      "The Nadendla team brought strong technical expertise and on-ground coordination to our infrastructure project. Their professionalism and transparency throughout the project lifecycle were commendable.",
     rating: 5,
   },
   {
-    name: "Vikram Reddy",
-    role: "Project Manager, Metro Corp",
-    content: "The professionalism and technical excellence of Nadendla Constructions is remarkable. They handled our complex infrastructure project with utmost precision and delivered exceptional results.",
+    name: "Anil Verma",
+    role: "Project Head, Kribhco Green Energy Pvt Ltd",
+    content:
+      "Working with Nadendla Constructions was a highly positive experience. They clearly understand the requirements of green energy projects and delivered with precision and efficiency.",
+    rating: 5,
+  },
+  {
+    name: "Mahesh Agarwal",
+    role: "Managing Partner, MS Agarwal Foundries",
+    content:
+      "Nadendla Constructions handled our foundry expansion project with great attention to detail. Their ability to manage complex industrial requirements sets them apart in the construction industry.",
+    rating: 5,
+  },
+  {
+    name: "Praveen Rao",
+    role: "Operations Head, Maruthi Ispat Energy Pvt Ltd",
+    content:
+      "Their commitment to timelines and quality workmanship was evident from day one. Nadendla Constructions proved to be a reliable partner for our energy and steel infrastructure needs.",
+    rating: 5,
+  },
+  {
+    name: "Karthik Reddy",
+    role: "Director, Excel Regreen Energy LLP",
+    content:
+      "Nadendla’s team executed our renewable energy facility with excellent coordination and technical accuracy. We truly appreciate their proactive approach and engineering expertise.",
+    rating: 5,
+  },
+  {
+    name: "Sunil Sharma",
+    role: "Plant Head, Pushpit Steels Pvt Ltd",
+    content:
+      "From planning to execution, Nadendla Constructions maintained high standards of quality and safety. Their experience in industrial construction is clearly reflected in the final outcome.",
     rating: 5,
   },
 ];
+
 
 const ClientsPage = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);

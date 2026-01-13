@@ -97,11 +97,17 @@ export const ProjectsSection = () => {
             <button
               key={category}
               onClick={() => setActiveFilter(category)}
-              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
-                activeFilter === category
-                  ? "bg-accent text-primary-foreground"
-                  : "bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20"
-              }`}
+              // className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 ${
+              //   activeFilter === category
+              //     ? "bg-accent text-primary-foreground"
+              //     : "bg-primary-foreground/10 text-primary-foreground hover:bg-primary-foreground/20"
+              // }`}
+              className={`px-6 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 cursor-not-allowed opacity-70 ${
+  activeFilter === category 
+    ? "bg-accent text-primary-foreground"
+    : "bg-primary-foreground/10 text-primary-foreground"
+}`}
+
             >
               {category}
             </button>
@@ -109,7 +115,31 @@ export const ProjectsSection = () => {
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div
+       <div className="relative rounded-2xl border border-dashed border-accent/40 bg-primary-foreground/5 px-8 py-14 text-center max-w-4xl mx-auto shadow-lg shadow-black/50 hover:shadow-xl transition-shadow duration-300">
+  {/* Icon */}
+  <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-accent/20 shadow-md shadow-black/50">
+    <Search className="h-6 w-6 text-accent" />
+  </div>
+
+  {/* Title */}
+  <h3 className="text-2xl md:text-3xl font-heading font-bold text-primary-foreground mb-4">
+    Projects Under Execution
+  </h3>
+
+  {/* Description */}
+  <p className="mx-auto max-w-2xl text-primary-foreground/70 text-base md:text-lg leading-relaxed">
+    We are currently executing multiple large-scale industrial, commercial,
+    and infrastructure projects across India. Detailed project showcases
+    will be published once execution milestones are completed.
+  </p>
+
+  {/* Footer note */}
+  <div className="mt-6 text-sm text-primary-foreground/50">
+    For current project details, please contact our team.
+  </div>
+</div>
+
+        {/* <motion.div
           layout
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
@@ -131,7 +161,7 @@ export const ProjectsSection = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </div>
-                {/* Overlay */}
+                
                 <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                   <span className="text-accent text-sm font-semibold mb-2">
                     {project.category}
@@ -147,14 +177,13 @@ export const ProjectsSection = () => {
                     <ArrowRight className="h-4 w-4" />
                   </button>
                 </div>
-                {/* Hover Icon */}
                 <div className="absolute top-4 left-4 w-12 h-12 bg-accent rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform -translate-y-4 group-hover:translate-y-0">
                   <Search className="h-5 w-5 text-primary-foreground" />
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

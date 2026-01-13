@@ -6,37 +6,90 @@ import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
 const testimonials = [
   {
     id: 1,
-    name: "Rajesh Kumar",
-    role: "CEO, Kumar Industries",
+    name: "Rakesh Mehta",
+    role: "Director, Reliance Industrial Projects",
     content:
-      "Nadendla Constructions delivered our industrial facility ahead of schedule. Their attention to detail and commitment to quality is unmatched. Highly recommended for any large-scale construction project.",
+      "Nadendla Constructions showcased exceptional project execution skills. Their disciplined approach and commitment to quality ensured timely completion of our industrial facility.",
     rating: 5,
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    role: "Managing Director, Sharma Enterprises",
+    name: "Suresh Iyer",
+    role: "Senior Manager, L&T Infrastructure",
     content:
-      "Working with Nadendla was a seamless experience. Their team's expertise in commercial construction helped us create a workspace that truly reflects our brand. Outstanding work!",
+      "The team demonstrated strong engineering expertise and seamless coordination. Nadendla Constructions delivered our infrastructure project with precision and professionalism.",
     rating: 5,
   },
   {
     id: 3,
-    name: "Vikram Reddy",
-    role: "Project Manager, Metro Corp",
+    name: "Anil Verma",
+    role: "Project Head, Kribhco Green Energy Pvt Ltd",
     content:
-      "The professionalism and technical excellence of Nadendla Constructions is remarkable. They handled our complex infrastructure project with utmost precision and delivered exceptional results.",
+      "Their understanding of green energy infrastructure requirements is outstanding. Execution was smooth, efficient, and aligned with sustainability goals.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Mahesh Agarwal",
+    role: "Managing Partner, MS Agarwal Foundries",
+    content:
+      "Nadendla handled our foundry expansion with excellent planning and execution. Their industrial construction experience truly reflects in the final outcome.",
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: "Praveen Rao",
+    role: "Operations Head, Maruthi Ispat Energy Pvt Ltd",
+    content:
+      "From project planning to handover, Nadendla Constructions maintained high quality and safety standards. A dependable construction partner.",
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: "Karthik Reddy",
+    role: "Director, Excel Regreen Energy LLP",
+    content:
+      "Their proactive approach and technical clarity made execution effortless. We highly appreciate their professionalism in renewable energy projects.",
+    rating: 5,
+  },
+  {
+    id: 7,
+    name: "Sunil Sharma",
+    role: "Plant Head, Pushpit Steels Pvt Ltd",
+    content:
+      "Nadendla Constructions delivered our steel facility on schedule without compromising quality. Excellent workmanship and coordination.",
     rating: 5,
   },
 ];
-const clientLogos = [
-  "/assets/images/outright_creators_logo.jpg",
-  "/assets/images/iron.jpg",
-  "/assets/images/iron-3.avif",
-  "/assets/images/iron-2.png",
-  "/assets/images/ab-cement.jpg",
-  "/assets/images/6.jpg",
+
+// const clientLogos = [
+//   "/assets/images/outright_creators_logo.jpg",
+//   "/assets/images/iron.jpg",
+//   "/assets/images/iron-3.avif",
+//   "/assets/images/iron-2.png",
+//   "/assets/images/ab-cement.jpg",
+//   "/assets/images/6.jpg",
+// ];
+
+const clients = [
+  {
+    name: "L&T Infrastructure",
+    sector: "Infrastructure",
+  },
+  {
+    name: "Kribhco Green Energy Pvt Ltd",
+    sector: "Green Energy",
+  },
+  {
+    name: "Pushpit Steels Pvt Ltd",
+    sector: "Steel Manufacturing",
+  },
+  {
+    name: "MS Agarwal Foundries",
+    sector: "Foundry & Metals",
+  },
 ];
+
 
 export const TestimonialsSection = () => {
   const ref = useRef(null);
@@ -128,27 +181,45 @@ export const TestimonialsSection = () => {
               <div className="h-1 w-12 bg-accent" />
             </div>
 
-            <div className="grid grid-cols-3 gap-6">
-              {clientLogos.map((logo, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+              {clients.map((client, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="aspect-square border border-border rounded-lg  flex items-center justify-center hover:border-accent/50 hover:shadow-soft transition-all bg-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  whileHover={{ y: -4 }}
+                  className="group rounded-2xl border border-border bg-white p-8 text-center transition-all hover:border-accent hover:shadow-soft"
                 >
-                  <img
-                    src={logo}
-                    alt={`Client ${index + 1}`}
-                    className="h-full w-auto object-contain opacity-80 hover:opacity-100 transition"
-                  />
+                  {/* Initial Circle */}
+                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
+                    <span className="text-2xl font-heading font-bold text-accent">
+                      {client.name.charAt(0)}
+                    </span>
+                  </div>
+
+                  {/* Company Name */}
+                  <h3 className="font-heading text-lg font-bold text-primary mb-1">
+                    {client.name}
+                  </h3>
+
+                  {/* Sector */}
+                  <p className="text-sm text-muted-foreground">
+                    {client.sector}
+                  </p>
                 </motion.div>
               ))}
             </div>
-
             <button className="mt-8 text-muted-foreground hover:text-accent font-semibold text-sm flex items-center gap-2 transition-colors">
-              View All Our Clients
-              <ChevronRight className="h-4 w-4" />
+              <a
+                href="/clients"
+                className="mt-8 inline-flex items-center gap-2 text-muted-foreground hover:text-accent font-semibold text-sm transition-colors"
+              >
+                View All Our Clients
+                <ChevronRight className="h-4 w-4" />
+              </a>
+
             </button>
           </motion.div>
         </div>

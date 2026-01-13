@@ -47,22 +47,71 @@ const GalleryPage = () => {
             {/* Filters */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
               {categories.map((category) => (
+                // <button
+                //   key={category}
+                //   onClick={() => setActiveCategory(category)}
+                //   className={`px-5 py-2 rounded-full font-medium transition-all ${
+                //     activeCategory === category
+                //       ? "bg-accent text-primary-foreground"
+                //       : "bg-secondary text-muted-foreground hover:bg-accent/10 hover:text-accent"
+                //   }`}
+                // >
+                //   {category}
+                // </button>
                 <button
-                  key={category}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-5 py-2 rounded-full font-medium transition-all ${
-                    activeCategory === category
-                      ? "bg-accent text-primary-foreground"
-                      : "bg-secondary text-muted-foreground hover:bg-accent/10 hover:text-accent"
-                  }`}
-                >
-                  {category}
-                </button>
+  key={category}
+  disabled
+  className={`px-5 py-2 rounded-full font-medium cursor-not-allowed opacity-60
+    ${activeCategory === category
+      ? "bg-accent text-primary-foreground"
+      : "bg-secondary text-muted-foreground"
+    }`}
+>
+  {category}
+</button>
+
               ))}
             </div>
 
             {/* Gallery Grid */}
-            <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+  className="max-w-5xl mx-auto mt-16"
+>
+  <div className="rounded-2xl border border-dashed border-accent/40 bg-card px-10 py-16 text-center shadow-lg shadow-black/50 hover:shadow-xl transition-shadow duration-300">
+
+    {/* Icon */}
+    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-accent/15 shadow-md shadow-black/50">
+      <ZoomIn className="h-7 w-7 text-accent" />
+    </div>
+
+    {/* Title */}
+    <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
+      Gallery Under Documentation
+    </h2>
+
+    {/* Description */}
+    <p className="mx-auto max-w-3xl text-muted-foreground text-lg leading-relaxed">
+      Our project gallery is currently being curated with approved site
+      photographs, execution milestones, and completion visuals.
+      Images will be published once documentation is finalized.
+    </p>
+
+    {/* Divider */}
+    <div className="my-8 h-px bg-border max-w-xs mx-auto" />
+
+    {/* Footer note */}
+    <p className="text-sm text-muted-foreground">
+      For visual references or project walk-throughs, please contact our team.
+    </p>
+  </div>
+</motion.div>
+
+
+
+            {/* <motion.div layout className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               <AnimatePresence mode="popLayout">
                 {filteredImages.map((image) => (
                   <motion.div
@@ -90,12 +139,12 @@ const GalleryPage = () => {
                   </motion.div>
                 ))}
               </AnimatePresence>
-            </motion.div>
+            </motion.div> */}
           </div>
         </section>
 
         {/* Lightbox */}
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {selectedImage && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -125,7 +174,7 @@ const GalleryPage = () => {
               </div>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
 
         <CTASection />
       </main>

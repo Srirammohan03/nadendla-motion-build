@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { toast } from "sonner";
 
+
+
 const contactInfo = [
   { icon: Phone, label: "Phone", value: "+91 9494288997 , 9440011704", href: "tel:+919494288997" },
   { icon: Mail, label: "Email", value: "n.vamsikiran4@gmail.com", href: "mailto:n.vamsikiran4@gmail.com" },
@@ -15,6 +17,8 @@ const contactInfo = [
 ];
 
 const ContactPage = () => {
+  const [loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,11 +27,39 @@ const ContactPage = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbxM3_QAjjzMXsg-Dl2uwZafDiv_Uk-6reWjP6Z3nuaChPAMMhwbD9ZARUfkjqy-QZgX/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
     toast.success("Thank you! We'll get back to you soon.");
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-  };
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    });
+  } catch (error) {
+    toast.error("Submission failed. Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
   return (
     <div className="min-h-screen">
@@ -109,10 +141,29 @@ const ContactPage = () => {
                       placeholder="Tell us about your project..."
                     />
                   </div>
-                  <Button type="submit" variant="accent" size="lg" className="w-full md:w-auto">
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </Button>
+                  <Button
+  type="submit"
+  variant="accent"
+  size="lg"
+  disabled={loading}
+  className="w-full md:w-auto flex items-center justify-center gap-2"
+>
+  {loading ? (
+    <>
+      <motion.span
+        className="h-4 w-4 border-2 border-white border-t-transparent rounded-full"
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+      />
+      Sending...
+    </>
+  ) : (
+    <>
+      <Send className="h-4 w-4" />
+      Send Message
+    </>
+  )}
+</Button>
                 </form>
               </motion.div>
 
